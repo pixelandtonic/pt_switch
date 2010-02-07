@@ -11,7 +11,7 @@ class Pt_switch extends EE_Fieldtype {
 	/**
 	 * Fieldtype Constructor
 	 */
-	function Wygwam_ft()
+	function Pt_switch_ft()
 	{
 		parent::EE_Fieldtype();
 	}
