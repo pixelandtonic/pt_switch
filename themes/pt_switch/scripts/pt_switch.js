@@ -1,8 +1,8 @@
 var ptSwitch;
 
-var $document = $(document);
-
 (function($){
+
+var $document = $(document);
 
 // --------------------------------------------------------------------
 
