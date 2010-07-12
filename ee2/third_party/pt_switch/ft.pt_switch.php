@@ -21,7 +21,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 
 		if (! isset($this->EE->session->cache['pt_switch']))
 		{
-			$this->EE->session->cache['pt_switch'] = array();
+			$this->EE->session->cache['pt_switch'] = array('includes' => array());
 		}
 		$this->cache =& $this->EE->session->cache['pt_switch'];
 	}
@@ -48,7 +48,11 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	private function _include_theme_css($file)
 	{
-		$this->EE->cp->add_to_head('<link rel="stylesheet" type="text/css" href="'.$this->_theme_url().$file.'" />');
+		if (! in_array($file, $this->cache['includes']))
+		{
+			$this->cache['includes'][] = $file;
+			$this->EE->cp->add_to_head('<link rel="stylesheet" type="text/css" href="'.$this->_theme_url().$file.'" />');
+		}
 	}
 
 	/**
@@ -56,7 +60,19 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	private function _include_theme_js($file)
 	{
-		$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.$this->_theme_url().$file.'"></script>');
+		if (! in_array($file, $this->cache['includes']))
+		{
+			$this->cache['includes'][] = $file;
+			$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.$this->_theme_url().$file.'"></script>');
+		}
+	}
+
+	/**
+	 * Insert JS
+	 */
+	private function _insert_js($js)
+	{
+		$this->EE->cp->add_to_foot('<script type="text/javascript">'.$js.'</script>');
 	}
 
 	// --------------------------------------------------------------------
@@ -64,44 +80,71 @@ class Pt_switch_ft extends EE_Fieldtype {
 	/**
 	 * Display Field Settings
 	 */
-	function display_settings($settings)
+	function display_settings($data)
 	{
-		// merge in default field settings
-		$settings = array_merge(array(
-			'on_val' => 'y',
-			'on_label' => 'YES',
-			'off_val' => 'n',
-			'off_label' => 'NO'
-		), $settings);
+		$rows = $this->_field_settings($data);
 
+		foreach ($rows as $row)
+		{
+			$this->EE->table->add_row($row[0], $row[1]);
+		}
+	}
+
+	/**
+	 * Display Cell Settings
+	 */
+	function display_cell_settings($data)
+	{
+		return $this->_field_settings($data, 'class="matrix-textarea"');
+	}
+
+	/**
+	 * Field Settings
+	 */
+	private function _field_settings($data, $attr = '')
+	{
 		// load the language file
 		$this->EE->lang->loadfile('pt_switch');
 
-		// ON Value
-		$this->EE->table->add_row(
-			lang('pt_switch_on_val', 'pt_switch_on_val'),
-			form_input('pt_switch[on_val]', $settings['on_val'], 'id="pt_switch_on_val"')
+		// merge in default field settings
+		$data = array_merge(
+			array(
+				'on_label'  => 'YES',
+				'on_val'    => 'y',
+				'off_label' => 'NO',
+				'off_val'   => ''
+			),
+			$data
 		);
 
-		// ON Label
-		$this->EE->table->add_row(
-			lang('pt_switch_on_label', 'pt_switch_on_label'),
-			form_input('pt_switch[on_label]', $settings['on_label'], 'id="pt_switch_on_label"')
-		);
+		return array(
+			// ON Label
+			array(
+				lang('pt_switch_on_label', 'pt_switch_on_label'),
+				form_input('pt_switch[on_label]', $data['on_label'], $attr)
+			),
 
-		// OFF Value
-		$this->EE->table->add_row(
-			lang('pt_switch_off_val', 'pt_switch_off_val'),
-			form_input('pt_switch[off_val]', $settings['off_val'], 'id="pt_switch_off_val"')
-		);
+			// ON Value
+			array(
+				lang('pt_switch_on_val', 'pt_switch_on_val'),
+				form_input('pt_switch[on_val]', $data['on_val'], $attr)
+			),
 
-		// OFF Label
-		$this->EE->table->add_row(
-			lang('pt_switch_off_label', 'pt_switch_off_label'),
-			form_input('pt_switch[off_label]', $settings['off_label'], 'id="pt_switch_off_label"')
-		);
+			// OFF Label
+			array(
+				lang('pt_switch_off_label', 'pt_switch_off_label'),
+				form_input('pt_switch[off_label]', $data['off_label'], $attr)
+			),
 
+			// OFF Value
+			array(
+				lang('pt_switch_off_val', 'pt_switch_off_val'),
+				form_input('pt_switch[off_val]', $data['off_val'], $attr)
+			)
+		);
 	}
+
+	// --------------------------------------------------------------------
 
 	/**
 	 * Save Field Settings
@@ -118,24 +161,54 @@ class Pt_switch_ft extends EE_Fieldtype {
 		return $settings;
 	}
 
+	/**
+	 * Save Cell Settings
+	 */
+	function save_cell_settings($settings)
+	{
+		return $settings['pt_switch'];
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
 	 * Display Field
 	 */
-	function display_field($data)
+	function display_field($data, $cell = FALSE)
 	{
 		$this->_include_theme_css('styles/pt_switch.css');
 		$this->_include_theme_js('scripts/pt_switch.js');
 
+		$field_name = $cell ? $this->cell_name : $this->field_name;
+		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
+
+		// -------------------------------------------
+		//  Insert the JS
+		// -------------------------------------------
+
+		if (! $cell)
+		{
+			$this->_insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
+		}
+
 		return form_dropdown(
-			$this->settings['field_name'],
+			$field_name,
 			array(
 				$this->settings['off_val'] => $this->settings['off_label'],
 				$this->settings['on_val'] => $this->settings['on_label']
 			),
 			$data,
-			'class="pt-switch"'
+			'class="pt-switch" id="'.$field_id.'"'
 		);
+	}
+
+	/**
+	 * Display Cell
+	 */
+	function display_cell($data)
+	{
+		$this->_include_theme_js('scripts/matrix2.js');
+
+		return $this->display_field($data, TRUE);
 	}
 }

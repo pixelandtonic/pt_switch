@@ -3,3 +3,5 @@ ul.pt-switch li { float: left; }
 ul.pt-switch li.n { padding-right: 7px; }
 ul.pt-switch li.y { padding-left: 7px; }
 ul.pt-switch li.toggle { border: 1px solid; border-color: #666 #808080 #999; -webkit-border-radius: 3px; width: 50px; height: 16px; background: url(../images/switch-bg.jpg) no-repeat 100% 0; }
+
+.matrix ul.pt-switch { margin: 0; }
