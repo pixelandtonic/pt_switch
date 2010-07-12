@@ -1,5 +1,7 @@
 var ptSwitch;
 
+var $document = $(document);
+
 (function($){
 
 // --------------------------------------------------------------------
@@ -51,20 +53,22 @@ ptSwitch = function($select){
 	$on.click(select);
 
 	$toggle.mousedown(function(event){
-		var width = $toggle.width(),
+		event.preventDefault();
+
+		var width = $toggle.width() - 20,
 			pageX = event.pageX,
 			pageY = event.pageY,
 			percent = selected ? 100 : 0;
 
-		$(document).bind('mousemove.pt-switch', function(event){
+		$document.bind('mousemove.pt-switch', function(event){
 			percent = (selected ? 100 : 0) + 100 * (event.pageX - pageX) / width;
 			if (percent > 100) percent = 100;
 			else if (percent < 0) percent = 0;
 			$toggle.css('background-position', (100-percent)+'% 0');
 		});
 
-		$(document).bind('mouseup.pt-switch', function(event){
-			$(document).unbind('.pt-switch');
+		$document.bind('mouseup.pt-switch', function(event){
+			$document.unbind('.pt-switch');
 
 			// just toggle if it was a single click
 			if (pageX == event.pageX && pageY == event.pageY) {
