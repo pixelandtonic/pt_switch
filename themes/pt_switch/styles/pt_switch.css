@@ -1,5 +1,5 @@
-ul.ptSwitch { display: inline-block; margin: 0; padding: 0; list-style-type: none; line-height: 18px; font-weight: bold; cursor: default; -webkit-user-select: none; -moz-user-select: none; }
-ul.ptSwitch li { float: left; }
-ul.ptSwitch li.n { padding-right: 7px; }
-ul.ptSwitch li.y { padding-left: 7px; }
-ul.ptSwitch li.toggle { border: 1px solid; border-color: #666 #808080 #999; -webkit-border-radius: 3px; width: 50px; height: 16px; background: url(../images/switch-bg.jpg) no-repeat 100% 0; }
+ul.pt-switch { display: inline-block; margin: 5px 0; padding: 0; list-style-type: none; line-height: 18px; font-weight: bold; cursor: default; -webkit-user-select: none; -moz-user-select: none; }
+ul.pt-switch li { float: left; }
+ul.pt-switch li.n { padding-right: 7px; }
+ul.pt-switch li.y { padding-left: 7px; }
+ul.pt-switch li.toggle { border: 1px solid; border-color: #666 #808080 #999; -webkit-border-radius: 3px; width: 50px; height: 16px; background: url(../images/switch-bg.jpg) no-repeat 100% 0; }

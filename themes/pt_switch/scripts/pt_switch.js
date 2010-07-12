@@ -1,11 +1,17 @@
+(function($){
+
 $.fn.ptSwitch = function(){
 	return this.each(function(){
 		var $select = $(this).hide(),
-			$ul = $('<ul class="ptSwitch" tabindex="0" />').insertAfter($select),
-			$n = $('<li class="n">No</li>').appendTo($ul),
+			offVal = this[0].value,
+			offLabel = this[0].text,
+			onVal = this[1].value,
+			onLabel = this[1].text,
+			$ul = $('<ul class="pt-switch" tabindex="0" />').insertAfter($select),
+			$off = $('<li class="'+offVal+'">'+offLabel+'</li>').appendTo($ul),
 			$toggle = $('<li class="toggle" />').appendTo($ul),
-			$y = $('<li class="y">Yes</li>').appendTo($ul),
-			selected = $select.val() == 'y';
+			$on = $('<li class="'+onVal+'">'+onLabel+'</li>').appendTo($ul),
+			selected = $select.val() == onVal;
 
 		// set initial bg position
 		$toggle.css({ backgroundPosition: (selected ? 0 : 100) + '% 0' });
@@ -31,8 +37,8 @@ $.fn.ptSwitch = function(){
 			else select();
 		};
 
-		$n.click(deselect);
-		$y.click(select);
+		$off.click(deselect);
+		$on.click(select);
 
 		$toggle.mousedown(function(event){
 			var width = $toggle.width(),
@@ -40,15 +46,15 @@ $.fn.ptSwitch = function(){
 				pageY = event.pageY,
 				percent = selected ? 100 : 0;
 
-			$(document).bind('mousemove.ptSwitch', function(event){
+			$(document).bind('mousemove.pt-switch', function(event){
 				percent = (selected ? 100 : 0) + 100 * (event.pageX - pageX) / width;
 				if (percent > 100) percent = 100;
 				else if (percent < 0) percent = 0;
 				$toggle.css('background-position', (100-percent)+'% 0');
 			});
 
-			$(document).bind('mouseup.ptSwitch', function(event){
-				$(document).unbind('.ptSwitch');
+			$(document).bind('mouseup.pt-switch', function(event){
+				$(document).unbind('.pt-switch');
 
 				// just toggle if it was a single click
 				if (pageX == event.pageX && pageY == event.pageY) {
@@ -76,3 +82,8 @@ $.fn.ptSwitch = function(){
 		});
 	});
 };
+
+
+$('select.pt-switch').ptSwitch();
+
+})(jQuery);
