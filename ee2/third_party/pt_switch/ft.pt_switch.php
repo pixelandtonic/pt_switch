@@ -37,7 +37,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 		{
 			$theme_folder_url = $this->EE->config->item('theme_folder_url');
 			if (substr($theme_folder_url, -1) != '/') $theme_folder_url .= '/';
-			$this->cache['theme_url'] = $theme_folder_url.'pt_switch/';
+			$this->cache['theme_url'] = $theme_folder_url.'third_party/pt_switch/';
 		}
 
 		return $this->cache['theme_url'];
