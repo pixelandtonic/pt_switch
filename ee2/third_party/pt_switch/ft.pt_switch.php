@@ -199,24 +199,17 @@ class Pt_switch_ft extends EE_Fieldtype {
 		$field_name = $cell ? $this->cell_name : $this->field_name;
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
 
-		// -------------------------------------------
-		//  Insert the JS
-		// -------------------------------------------
-
 		if (! $cell)
 		{
 			$this->_insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
-		return form_dropdown(
-			$field_name,
-			array(
-				$this->settings['off_val'] => $this->settings['off_label'],
-				$this->settings['on_val'] => $this->settings['on_label']
-			),
-			$data,
-			'id="'.$field_id.'"'
+		$options = array(
+			$this->settings['off_val'] => $this->settings['off_label'],
+			$this->settings['on_val'] => $this->settings['on_label']
 		);
+
+		return form_dropdown($field_name, $options, $data, 'id="'.$field_id.'"');
 	}
 
 	/**

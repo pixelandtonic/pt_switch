@@ -143,23 +143,21 @@ class Pt_switch extends Fieldframe_Fieldtype {
 
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
 
-		// -------------------------------------------
-		//  Insert the JS
-		// -------------------------------------------
-
 		if (! $cell)
 		{
 			$this->insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
+		$options = array(
+			$settings['off_val'] => $settings['off_label'],
+			$settings['on_val']  => $settings['on_label']
+		);
+
 		$SD = new Fieldframe_SettingsDisplay();
 
 		return '<select id="'.$field_id.'" name="'.$field_name.'">'
-			. $SD->_select_options($data, array(
-				$settings['off_val'] => $settings['off_label'],
-				$settings['on_val']  => $settings['on_label']
-			)
-		);
+			. $SD->_select_options($data, $options)
+			. '</select>';
 	}
 
 	/**

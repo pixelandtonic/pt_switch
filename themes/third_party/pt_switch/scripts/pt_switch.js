@@ -22,26 +22,29 @@ ptSwitch = function($select){
 		$ul = $('<ul class="pt-switch" tabindex="0" />').insertAfter($select),
 		$off = $('<li class="n">'+offLabel+'</li>').appendTo($ul),
 		$toggle = $('<li class="toggle" />').appendTo($ul),
+		$handle = $('<div />').appendTo($toggle),
 		$on = $('<li class="y">'+onLabel+'</li>').appendTo($ul),
 		selected = $select.val() == onVal;
 
-	// set initial bg position
-	$toggle.css({ backgroundPosition: (selected ? 0 : 100) + '% 0' });
+	// set initial position
+	if (selected) {
+		var left = $toggle.width() - $handle.width();
+		$handle.css('left', left);
+	}
 
 	var select = function(){
 		selected = true;
-		$select.val('y');
-		$toggle.stop().animate({
-			backgroundPosition: "0% 0"
-		}, 'fast');
+		$select.val(onVal);
+
+		var left = $toggle.width() - $handle.width();
+		$handle.stop().animate({ left: left }, 'fast');
 	};
 
 	var deselect = function(){
 		selected = false;
-		$select.val('n');
-		$toggle.stop().animate({
-			backgroundPosition: '100% 0'
-		}, 'fast');
+		$select.val(offVal);
+
+		$handle.stop().animate({ left: 0 }, 'fast');
 	};
 
 	var toggle = function(){
@@ -49,6 +52,7 @@ ptSwitch = function($select){
 		else select();
 	};
 
+	// prevent focus when clicking on the labels
 	$off.mousedown(function(event){ event.preventDefault(); });
 	$on.mousedown(function(event){ event.preventDefault(); });
 
@@ -58,16 +62,18 @@ ptSwitch = function($select){
 	$toggle.mousedown(function(event){
 		event.preventDefault();
 
-		var width = $toggle.width() - 20,
+		var toggleWidth = $toggle.width(),
+			handleWidth = $handle.width(),
+			width = toggleWidth - handleWidth,
 			pageX = event.pageX,
 			pageY = event.pageY,
-			percent = selected ? 100 : 0;
+			percent = selected ? 1 : 0;
 
 		$document.bind('mousemove.pt-switch', function(event){
-			percent = (selected ? 100 : 0) + 100 * (event.pageX - pageX) / width;
-			if (percent > 100) percent = 100;
+			percent = (selected ? 1 : 0) + (event.pageX - pageX) / width;
+			if (percent > 1) percent = 1;
 			else if (percent < 0) percent = 0;
-			$toggle.css('background-position', (100-percent)+'% 0');
+			$handle.css('left', percent * width);
 		});
 
 		$document.bind('mouseup.pt-switch', function(event){
@@ -77,7 +83,7 @@ ptSwitch = function($select){
 			if (pageX == event.pageX && pageY == event.pageY) {
 				toggle();
 			} else {
-				if (percent < 50) deselect();
+				if (percent < 0.5) deselect();
 				else select();
 			}
 		});
