@@ -49,6 +49,9 @@ ptSwitch = function($select){
 		else select();
 	};
 
+	$off.mousedown(function(event){ event.preventDefault(); });
+	$on.mousedown(function(event){ event.preventDefault(); });
+
 	$off.click(deselect);
 	$on.click(select);
 
