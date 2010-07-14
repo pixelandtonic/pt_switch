@@ -9,7 +9,7 @@ ul.pt-switch li.toggle,
 ul.pt-switch li.toggle div { border: 1px solid #a8b1b3; height: 18px;
 	border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 4px; }
 
-ul.pt-switch li.toggle { width: 50px; background: #e2e2e2; background: #f0f0f0 url(../images/toggle_bg.gif) repeat-x; overflow: hidden;
+ul.pt-switch li.toggle { width: 50px; background: #e2e2e2; background: #f0f0f0 url(../images/toggle_bg.gif) repeat-x;
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.12)), to(rgba(0,0,0,0.06)));
 	background: -moz-linear-gradient(top, rgba(0,0,0,0.12), rgba(0,0,0,0.06));
 	-webkit-box-shadow: inset 0 1px rgba(0,0,0,0.1);
