@@ -1,11 +1,26 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 
+if (! defined('PT_SWITCH_VER'))
+{
+	// get the version from config.php
+	require PATH_THIRD.'pt_switch/config.php';
+	define('PT_SWITCH_VER',  $config['version']);
+}
+
+
+/**
+ * P&T Switch Fieldtype Class for EE2
+ *
+ * @package   P&T Switch
+ * @author    Brandon Kelly <brandon@pixelandtonic.com>
+ * @copyright Copyright (c) 2010 Pixel & Tonic, LLC
+ */
 class Pt_switch_ft extends EE_Fieldtype {
 
 	var $info = array(
 		'name'    => 'P&amp;T Switch',
-		'version' => '1.0'
+		'version' => PT_SWITCH_VER
 	);
 
 	/**

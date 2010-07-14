@@ -1,11 +1,19 @@
 <?php if (! defined('EXT')) exit('Invalid file request');
 
 
+/**
+ * P&T Switch Fieldtype Class for EE1
+ *
+ * @package   P&T Switch
+ * @author    Brandon Kelly <brandon@pixelandtonic.com>
+ * @copyright Copyright (c) 2010 Pixel & Tonic, LLC
+ */
 class Pt_switch extends Fieldframe_Fieldtype {
 
 	var $info = array(
-		'name'     => 'P&amp;T Switch',
-		'version'  => '1.0'
+		'name'             => 'P&amp;T Switch',
+		'version'          => '1.0',
+		'versions_xml_url' => 'http://pixelandtonic.com/ee/versions.xml'
 	);
 
 	// --------------------------------------------------------------------
