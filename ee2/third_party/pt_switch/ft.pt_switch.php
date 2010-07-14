@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 class Pt_switch_ft extends EE_Fieldtype {
@@ -66,6 +66,8 @@ class Pt_switch_ft extends EE_Fieldtype {
 			$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.$this->_theme_url().$file.'"></script>');
 		}
 	}
+
+	// --------------------------------------------------------------------
 
 	/**
 	 * Insert JS
@@ -198,7 +200,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 				$this->settings['on_val'] => $this->settings['on_label']
 			),
 			$data,
-			'class="pt-switch" id="'.$field_id.'"'
+			'id="'.$field_id.'"'
 		);
 	}
 
