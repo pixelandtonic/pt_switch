@@ -2,7 +2,8 @@ var ptSwitch;
 
 (function($){
 
-var $document = $(document);
+var $document = $(document),
+	selectedLeft = 30;
 
 // --------------------------------------------------------------------
 
@@ -28,16 +29,14 @@ ptSwitch = function($select){
 
 	// set initial position
 	if (selected) {
-		var left = $toggle.width() - $handle.width();
-		$handle.css('left', left);
+		$handle.css('left', selectedLeft);
 	}
 
 	var select = function(){
 		selected = true;
 		$select.val(onVal);
 
-		var left = $toggle.width() - $handle.width();
-		$handle.stop().animate({ left: left }, 'fast');
+		$handle.stop().animate({ left: selectedLeft }, 'fast');
 	};
 
 	var deselect = function(){
