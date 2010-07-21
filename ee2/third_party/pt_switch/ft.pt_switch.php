@@ -193,8 +193,8 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	function display_field($data, $cell = FALSE)
 	{
-		$this->_include_theme_css('styles/pt_switch.css');
-		$this->_include_theme_js('scripts/pt_switch.js');
+		$this->_include_theme_css('Styles/pt_switch.css');
+		$this->_include_theme_js('Scripts/pt_switch.js');
 
 		$field_name = $cell ? $this->cell_name : $this->field_name;
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
@@ -217,7 +217,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	function display_cell($data)
 	{
-		$this->_include_theme_js('scripts/matrix2.js');
+		$this->_include_theme_js('Scripts/matrix2.js');
 
 		return $this->display_field($data, TRUE);
 	}
