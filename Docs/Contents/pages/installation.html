@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>P&amp;T Switch Docs - Installation Instructions</title>
+	<meta name="author" content="Pixel &amp; Tonic, Inc." />
+	<meta name="viewport" content="width=1000" />
+	<link rel="stylesheet" type="text/css" href="../styles/docs.css" />
+</head>
+
+<body class="page">
+<div id="page">
+
+	<h1>Installation Instructions</h1>
+
+	<section>
+		<h2>Installing P&amp;T Switch on ExpressionEngine 2.x</h2>
+
+		<h3>Prerequisites</h3>
+		<p>Make sure your system meets the minimum requirements:</p>
+		<ul class="square">
+			<li><a href="http://expressionengine.com/">ExpressionEngine</a> 2.0.2 <strong>build 20100430</strong> or later</li>
+			<li>PHP 5</li>
+		</ul>
+
+		<h3>Installation Instructions</h3>
+		<ol>
+			<li>Upload <kbd>ee2/third_party/pt_switch</kbd> to <kbd>system/expressionengine/third_party/</kbd></li>
+			<li>Upload <kbd>themes/third_party/pt_switch</kbd> to <kbd>themes/third_party/</kbd></li>
+			<li>Install P&amp;T Switch in Add-Ons → Fieldtypes</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2>Installing P&amp;T Switch on ExpressionEngine 1.x</h2>
+
+		<h3>Prerequisites</h3>
+		<p>Make sure your system meets the minimum requirements:</p>
+		<ul class="square">
+			<li><a href="http://expressionengine.com/">ExpressionEngine</a> 1.6.8 or later</li>
+			<li><a href="http://pixelandtonic.com/fieldframe">FieldFrame</a> 1.4.2 or later</li>
+			<li>PHP 5</li>
+		</ul>
+
+		<h3>Installation Instructions</h3>
+		<ol>
+			<li>Upload <kbd>ee1/fieldtypes/pt_switch</kbd> to <kbd>system/extensions/fieldtypes/</kbd></li>
+			<li>Upload <kbd>ee1/language/english/lang.pt_switch</kbd> to <kbd>system/language/english/</kbd></li>
+			<li>Upload <kbd>themes/third_party/pt_switch</kbd> to <kbd>themes/third_party/</kbd></li>
+			<li>Enable P&amp;T Switch in Admin → Utilities → Fieldtypes Manager</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2>Adding a P&amp;T Switch Field to the Publish Page</h2>
+
+		<p>Once the fieldtype is installed, you can add a P&amp;T Switch field to the Publish Page by following these steps:</p>
+		<ol>
+			<li>Go to your Custom Field preferences
+				<ul class="square">
+					<li><strong>EE1</strong>: Admin → Weblog Administration → Custom Weblog Fields</li>
+					<li><strong>EE2</strong>: Admin → Channel Administration → Custom Fields</li>
+				</ul>
+			</li>
+			<li>Click the “Add/Edit Custom Fields” link beside your field group</li>
+			<li>Click the “Create a New Custom Field” button</li>
+			<li>Give the new field a name and a label, and choose “P&amp;T Switch” in the Field Type dropdown.</li>
+			<li>Click the Submit button.</li>
+		</ol>
+	</section>
+
+</div>
+</body>
+</html>
