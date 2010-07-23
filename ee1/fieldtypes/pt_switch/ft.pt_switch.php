@@ -138,8 +138,8 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	 */
 	function display_field($field_name, $data, $settings, $cell = FALSE)
 	{
-		$this->_include_theme_css('Styles/pt_switch.css');
-		$this->_include_theme_js('Scripts/pt_switch.js');
+		$this->_include_theme_css('styles/pt_switch.css');
+		$this->_include_theme_js('scripts/pt_switch.js');
 
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
 
