@@ -217,7 +217,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	function display_cell($data)
 	{
-		$this->_include_theme_js('Scripts/matrix2.js');
+		$this->_include_theme_js('scripts/matrix2.js');
 
 		return $this->display_field($data, TRUE);
 	}
