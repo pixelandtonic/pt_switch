@@ -16,6 +16,19 @@ class Pt_switch extends Fieldframe_Fieldtype {
 		'versions_xml_url' => 'http://pixelandtonic.com/ee/versions.xml'
 	);
 
+	/**
+	 * P&T Switch Constructor
+	 */
+	function Pt_switch()
+	{
+		$this->default_field_settings = $this->default_cell_settings = array(
+			'on_label'  => 'YES',
+			'on_val'    => 'y',
+			'off_label' => 'NO',
+			'off_val'   => ''
+		);
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -92,17 +105,6 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	private function _field_settings($data, $attr = '')
 	{
 		global $LANG;
-
-		// merge in default field settings
-		$data = array_merge(
-			array(
-				'on_label'  => 'YES',
-				'on_val'    => 'y',
-				'off_label' => 'NO',
-				'off_val'   => ''
-			),
-			$data
-		);
 
 		return array(
 			// ON Label
