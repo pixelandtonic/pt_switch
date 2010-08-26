@@ -12,9 +12,22 @@ class Pt_switch extends Fieldframe_Fieldtype {
 
 	var $info = array(
 		'name'             => 'P&amp;T Switch',
-		'version'          => '1.0.1',
+		'version'          => '1.0.2',
 		'versions_xml_url' => 'http://pixelandtonic.com/ee/versions.xml'
 	);
+
+	/**
+	 * P&T Switch Constructor
+	 */
+	function Pt_switch()
+	{
+		$this->default_field_settings = $this->default_cell_settings = array(
+			'on_label'  => 'YES',
+			'on_val'    => 'y',
+			'off_label' => 'NO',
+			'off_val'   => ''
+		);
+	}
 
 	// --------------------------------------------------------------------
 
@@ -85,6 +98,14 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	{
 		return $this->_field_settings($data, 'class="matrix-textarea"');
 	}
+	
+	/**
+	 * Display LV Settings
+	 */
+	function display_var_settings($data)
+	{
+		return $this->_field_settings($data);
+	}
 
 	/**
 	 * Field Settings
@@ -92,17 +113,6 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	private function _field_settings($data, $attr = '')
 	{
 		global $LANG;
-
-		// merge in default field settings
-		$data = array_merge(
-			array(
-				'on_label'  => 'YES',
-				'on_val'    => 'y',
-				'off_label' => 'NO',
-				'off_val'   => ''
-			),
-			$data
-		);
 
 		return array(
 			// ON Label
@@ -129,6 +139,23 @@ class Pt_switch extends Fieldframe_Fieldtype {
 				'<input type="text" name="off_val" value="'.$data['off_val'].'" '.$attr.' />'
 			)
 		);
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Save LV Settings
+	 */
+	function save_var_settings($settings)
+	{
+		global $IN;
+
+		foreach ($settings AS $key => &$val)
+		{
+			$val = ($IN->GBL($key, 'POST') !== FALSE) ? $IN->GBL($key, 'POST') : $val;
+		}
+
+		return $settings;
 	}
 
 	// --------------------------------------------------------------------
@@ -168,5 +195,13 @@ class Pt_switch extends Fieldframe_Fieldtype {
 		$this->_include_theme_js('scripts/matrix2.js');
 
 		return $this->display_field($cell_name, $data, $settings, TRUE);
+	}
+	
+	/**
+	 * Display Var
+	 */
+	function display_var_field($cell_name, $data, $settings)
+	{
+		return $this->display_field($cell_name, $data, $settings);
 	}
 }

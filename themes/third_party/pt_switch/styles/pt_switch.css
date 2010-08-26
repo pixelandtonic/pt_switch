@@ -9,13 +9,13 @@ ul.pt-switch li.toggle,
 ul.pt-switch li.toggle div { border: 1px solid #a8b1b3; height: 18px;
 	border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 4px; }
 
-ul.pt-switch li.toggle { width: 50px; background: #e2e2e2; background: #f0f0f0 url(../Images/toggle_bg.gif) repeat-x; overflow: hidden;
+ul.pt-switch li.toggle { width: 50px; background: #e2e2e2; background: #f0f0f0 url(../images/toggle_bg.gif) repeat-x; overflow: hidden;
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.15)), to(rgba(0,0,0,0.1)));
 	background: -moz-linear-gradient(top, rgba(0,0,0,0.15), rgba(0,0,0,0.1));
 	-webkit-box-shadow: inset 0 1px rgba(0,0,0,0.1);
 	-moz-box-shadow: inset 0 1px rgba(0,0,0,0.1); }
 
-ul.pt-switch li.toggle div { position: relative; left: 0; margin: -1px; width: 20px; background: #fff url(../Images/handle_bg.gif) repeat-x;
+ul.pt-switch li.toggle div { position: relative; left: 0; margin: -1px; width: 20px; background: #fff url(../images/handle_bg.gif) repeat-x;
 	-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0 0 2px rgba(0,0,0,0.1); }
 
