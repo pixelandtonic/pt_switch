@@ -202,8 +202,6 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	 */
 	function display_var_field($cell_name, $data, $settings)
 	{
-		$this->_include_theme_js('scripts/matrix2.js');
-
 		return $this->display_field($cell_name, $data, $settings);
 	}
 }
