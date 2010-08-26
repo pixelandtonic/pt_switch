@@ -116,6 +116,14 @@ class Pt_switch_ft extends EE_Fieldtype {
 	}
 
 	/**
+	 * Display LV Settings
+	 */
+	function display_var_settings($data)
+	{
+		return $this->_field_settings($data);
+	}
+
+	/**
 	 * Field Settings
 	 */
 	private function _field_settings($data, $attr = '')
@@ -186,6 +194,14 @@ class Pt_switch_ft extends EE_Fieldtype {
 		return $settings['pt_switch'];
 	}
 
+	/**
+	 * Save LV Settings
+	 */
+	function save_var_settings($settings)
+	{
+		return $this->EE->input->post('pt_switch');
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -220,5 +236,15 @@ class Pt_switch_ft extends EE_Fieldtype {
 		$this->_include_theme_js('scripts/matrix2.js');
 
 		return $this->display_field($data, TRUE);
+	}
+	
+	/**
+	 * Display Var
+	 */
+	function display_var_field($data)
+	{
+		$this->_include_theme_js('scripts/matrix2.js');
+
+		return $this->display_field($data);
 	}
 }
