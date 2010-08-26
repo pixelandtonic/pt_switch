@@ -98,6 +98,14 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	{
 		return $this->_field_settings($data, 'class="matrix-textarea"');
 	}
+	
+	/**
+	 * Display LV Settings
+	 */
+	function display_var_settings($data)
+	{
+		return $this->_field_settings($data);
+	}
 
 	/**
 	 * Field Settings
@@ -131,6 +139,23 @@ class Pt_switch extends Fieldframe_Fieldtype {
 				'<input type="text" name="off_val" value="'.$data['off_val'].'" '.$attr.' />'
 			)
 		);
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Save LV Settings
+	 */
+	function save_var_settings($settings)
+	{
+		global $IN;
+
+		foreach ($settings AS $key => &$val)
+		{
+			$val = ($IN->GBL($key, 'POST') !== FALSE) ? $IN->GBL($key, 'POST') : $val;
+		}
+
+		return $settings;
 	}
 
 	// --------------------------------------------------------------------
@@ -170,5 +195,15 @@ class Pt_switch extends Fieldframe_Fieldtype {
 		$this->_include_theme_js('scripts/matrix2.js');
 
 		return $this->display_field($cell_name, $data, $settings, TRUE);
+	}
+	
+	/**
+	 * Display Var
+	 */
+	function display_var_field($cell_name, $data, $settings)
+	{
+		$this->_include_theme_js('scripts/matrix2.js');
+
+		return $this->display_field($cell_name, $data, $settings);
 	}
 }
