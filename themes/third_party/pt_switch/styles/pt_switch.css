@@ -1,4 +1,4 @@
-ul.pt-switch { display: inline-block; margin: 5px 0; padding: 0; list-style-type: none; line-height: 20px; font-weight: bold; text-shadow: 0 1px #fff; cursor: default;
+ul.pt-switch { display: inline-block; margin: 5px 0; padding: 0; list-style-type: none; line-height: 20px; font-weight: bold; text-shadow: 0 1px #fff; cursor: default; white-space: nowrap;
 	-webkit-user-select: none; -moz-user-select: none; }
 
 ul.pt-switch li { float: left; }
