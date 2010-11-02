@@ -90,9 +90,9 @@ ptSwitch = function($select){
 
 	$ul.keydown(function(event){
 		switch(event.keyCode) {
-			case 32: toggle(); break;
-			case 37: deselect(); break;
-			case 39: select(); break;
+			case 32: toggle();   break; // spacebar
+			case 37: deselect(); break; // left arrow
+			case 39: select();   break; // right arrow
 			default: return;
 		}
 
