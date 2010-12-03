@@ -143,18 +143,6 @@ class Pt_switch_ft extends EE_Fieldtype {
 		);
 
 		return array(
-			// ON Label
-			array(
-				lang('pt_switch_on_label', 'pt_switch_on_label'),
-				form_input('pt_switch[on_label]', $data['on_label'], $attr)
-			),
-
-			// ON Value
-			array(
-				lang('pt_switch_on_val', 'pt_switch_on_val'),
-				form_input('pt_switch[on_val]', $data['on_val'], $attr)
-			),
-
 			// OFF Label
 			array(
 				lang('pt_switch_off_label', 'pt_switch_off_label'),
@@ -165,6 +153,18 @@ class Pt_switch_ft extends EE_Fieldtype {
 			array(
 				lang('pt_switch_off_val', 'pt_switch_off_val'),
 				form_input('pt_switch[off_val]', $data['off_val'], $attr)
+			),
+
+			// ON Label
+			array(
+				lang('pt_switch_on_label', 'pt_switch_on_label'),
+				form_input('pt_switch[on_label]', $data['on_label'], $attr)
+			),
+
+			// ON Value
+			array(
+				lang('pt_switch_on_val', 'pt_switch_on_val'),
+				form_input('pt_switch[on_val]', $data['on_val'], $attr)
 			)
 		);
 	}

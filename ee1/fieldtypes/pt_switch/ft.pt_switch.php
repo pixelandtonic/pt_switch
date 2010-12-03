@@ -115,18 +115,6 @@ class Pt_switch extends Fieldframe_Fieldtype {
 		global $LANG;
 
 		return array(
-			// ON Label
-			array(
-				$LANG->line('pt_switch_on_label'),
-				'<input type="text" name="on_label" value="'.$data['on_label'].'" '.$attr.' />'
-			),
-
-			// ON Value
-			array(
-				$LANG->line('pt_switch_on_val'),
-				'<input type="text" name="on_val" value="'.$data['on_val'].'" '.$attr.' />'
-			),
-
 			// OFF Label
 			array(
 				$LANG->line('pt_switch_off_label'),
@@ -137,6 +125,18 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			array(
 				$LANG->line('pt_switch_off_val'),
 				'<input type="text" name="off_val" value="'.$data['off_val'].'" '.$attr.' />'
+			),
+
+			// ON Label
+			array(
+				$LANG->line('pt_switch_on_label'),
+				'<input type="text" name="on_label" value="'.$data['on_label'].'" '.$attr.' />'
+			),
+
+			// ON Value
+			array(
+				$LANG->line('pt_switch_on_val'),
+				'<input type="text" name="on_val" value="'.$data['on_val'].'" '.$attr.' />'
 			)
 		);
 	}
