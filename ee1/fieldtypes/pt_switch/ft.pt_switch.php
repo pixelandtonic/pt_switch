@@ -22,10 +22,11 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	function Pt_switch()
 	{
 		$this->default_field_settings = $this->default_cell_settings = array(
+			'off_label' => 'NO',
+			'off_val'   => '',
 			'on_label'  => 'YES',
 			'on_val'    => 'y',
-			'off_label' => 'NO',
-			'off_val'   => ''
+			'default'   => 'yes'
 		);
 	}
 
@@ -114,6 +115,8 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	{
 		global $LANG;
 
+		$SD = new Fieldframe_SettingsDisplay();
+
 		return array(
 			// OFF Label
 			array(
@@ -137,6 +140,12 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			array(
 				$LANG->line('pt_switch_on_val'),
 				'<input type="text" name="on_val" value="'.$data['on_val'].'" '.$attr.' />'
+			),
+
+			// Default
+			array(
+				$LANG->line('pt_switch_default'),
+				$SD->select('default', $data['default'], array('off' => 'OFF', 'on' => 'ON'))
 			)
 		);
 	}
@@ -165,13 +174,20 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	 */
 	function display_field($field_name, $data, $settings, $cell = FALSE)
 	{
+		global $FF, $IN;
+
 		$this->_include_theme_css('styles/pt_switch.css');
 		$this->_include_theme_js('scripts/pt_switch.js');
 
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
 
-		if (! $cell)
+		if ($cell)
 		{
+			$new = (! (isset($FF->row['entry_id']) ? $FF->row['entry_id'] : $IN->GBL('entry_id'))) || ($field_name == '{DEFAULT}');
+		}
+		else
+		{
+			$new = (! (isset($FF->row['entry_id']) ? $FF->row['entry_id'] : $IN->GBL('entry_id')));
 			$this->insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
@@ -179,6 +195,11 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			$settings['off_val'] => $settings['off_label'],
 			$settings['on_val']  => $settings['on_label']
 		);
+
+		if ($new)
+		{
+			$data = $settings[$settings['default'].'_val'];
+		}
 
 		$SD = new Fieldframe_SettingsDisplay();
 
@@ -196,7 +217,7 @@ class Pt_switch extends Fieldframe_Fieldtype {
 
 		return $this->display_field($cell_name, $data, $settings, TRUE);
 	}
-	
+
 	/**
 	 * Display Var
 	 */

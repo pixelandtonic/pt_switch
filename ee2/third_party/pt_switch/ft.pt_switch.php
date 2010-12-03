@@ -134,10 +134,11 @@ class Pt_switch_ft extends EE_Fieldtype {
 		// merge in default field settings
 		$data = array_merge(
 			array(
+				'off_label' => 'NO',
+				'off_val'   => '',
 				'on_label'  => 'YES',
 				'on_val'    => 'y',
-				'off_label' => 'NO',
-				'off_val'   => ''
+				'default'   => 'off'
 			),
 			$data
 		);
@@ -165,7 +166,13 @@ class Pt_switch_ft extends EE_Fieldtype {
 			array(
 				lang('pt_switch_on_val', 'pt_switch_on_val'),
 				form_input('pt_switch[on_val]', $data['on_val'], $attr)
-			)
+			),
+
+			// Default
+			array(
+				lang('pt_switch_default', 'pt_switch_default'),
+				form_dropdown('pt_switch[default]', array('off' => 'OFF', 'on' => 'ON'), $data['default'])
+			),
 		);
 	}
 
@@ -215,8 +222,13 @@ class Pt_switch_ft extends EE_Fieldtype {
 		$field_name = $cell ? $this->cell_name : $this->field_name;
 		$field_id = str_replace(array('[', ']'), array('_', ''), $field_name);
 
-		if (! $cell)
+		if ($cell)
 		{
+			$new = (! isset($this->row_id));
+		}
+		else
+		{
+			$new = (! $this->EE->input->get('entry_id'));
 			$this->_insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
@@ -224,6 +236,12 @@ class Pt_switch_ft extends EE_Fieldtype {
 			$this->settings['off_val'] => $this->settings['off_label'],
 			$this->settings['on_val'] => $this->settings['on_label']
 		);
+
+		if ($new)
+		{
+			if (! isset($this->settings['default'])) $this->settings['default'] = 'off';
+			$data = $this->settings[$this->settings['default'].'_val'];
+		}
 
 		return form_dropdown($field_name, $options, $data, 'id="'.$field_id.'"');
 	}
@@ -237,7 +255,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 
 		return $this->display_field($data, TRUE);
 	}
-	
+
 	/**
 	 * Display Var
 	 */
