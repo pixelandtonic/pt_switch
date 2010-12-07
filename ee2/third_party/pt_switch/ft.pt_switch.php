@@ -1,12 +1,7 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-if (! defined('PT_SWITCH_VER'))
-{
-	// get the version from config.php
-	require PATH_THIRD.'pt_switch/config.php';
-	define('PT_SWITCH_VER',  $config['version']);
-}
+require_once PATH_THIRD.'pt_switch/config.php';
 
 
 /**
@@ -19,7 +14,7 @@ if (! defined('PT_SWITCH_VER'))
 class Pt_switch_ft extends EE_Fieldtype {
 
 	var $info = array(
-		'name'    => 'P&amp;T Switch',
+		'name'    => PT_SWITCH_NAME,
 		'version' => PT_SWITCH_VER
 	);
 
