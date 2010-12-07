@@ -11,7 +11,7 @@
 class Pt_switch extends Fieldframe_Fieldtype {
 
 	var $info = array(
-		'name'             => 'P&amp;T Switch',
+		'name'             => 'P&T Switch',
 		'version'          => '1.0.3',
 		'versions_xml_url' => 'http://pixelandtonic.com/ee/versions.xml'
 	);
