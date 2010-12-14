@@ -26,7 +26,7 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			'off_val'   => '',
 			'on_label'  => 'YES',
 			'on_val'    => 'y',
-			'default'   => 'yes'
+			'default'   => 'off'
 		);
 	}
 
