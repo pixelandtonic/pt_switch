@@ -12,7 +12,7 @@ class Pt_switch extends Fieldframe_Fieldtype {
 
 	var $info = array(
 		'name'             => 'P&T Switch',
-		'version'          => '1.0.3',
+		'version'          => '1.0.4',
 		'versions_xml_url' => 'http://pixelandtonic.com/ee/versions.xml'
 	);
 
@@ -26,7 +26,7 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			'off_val'   => '',
 			'on_label'  => 'YES',
 			'on_val'    => 'y',
-			'default'   => 'yes'
+			'default'   => 'off'
 		);
 	}
 

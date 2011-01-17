@@ -3,7 +3,7 @@
 if (! defined('PT_SWITCH_NAME'))
 {
 	define('PT_SWITCH_NAME', 'P&amp;T Switch');
-	define('PT_SWITCH_VER',  '1.0.3');
+	define('PT_SWITCH_VER',  '1.0.4');
 }
 
 $config['name']    = PT_SWITCH_NAME;
