@@ -223,7 +223,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 		}
 		else
 		{
-			$new = (! $this->EE->input->get('entry_id'));
+			$new = (! $this->EE->input->get('entry_id') && substr($field_name, 0, 3) != 'var');
 			$this->_insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
