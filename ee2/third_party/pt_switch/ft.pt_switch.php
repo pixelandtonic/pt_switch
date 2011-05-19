@@ -23,7 +23,7 @@ class Pt_switch_ft extends EE_Fieldtype {
 	 */
 	function Pt_switch_ft()
 	{
-		parent::EE_Fieldtype();
+		parent::__construct();
 
 		/** ----------------------------------------
 		/**  Prepare Cache
