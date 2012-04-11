@@ -257,4 +257,21 @@ class Pt_switch_ft extends EE_Fieldtype {
 	{
 		return $this->display_field($data);
 	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Label
+	 */
+	function replace_label($data, $params = array(), $tagdata = FALSE)
+	{
+		if ($data == $this->settings['on_val'])
+		{
+			return $this->settings['on_label'];
+		}
+		else
+		{
+			return $this->settings['off_label'];
+		}
+	}
 }

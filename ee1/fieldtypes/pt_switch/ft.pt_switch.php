@@ -225,4 +225,21 @@ class Pt_switch extends Fieldframe_Fieldtype {
 	{
 		return $this->display_field($cell_name, $data, $settings);
 	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Label
+	 */
+	function label($params, $tagdata, $data, $settings)
+	{
+		if ($data == $settings['on_val'])
+		{
+			return $settings['on_label'];
+		}
+		else
+		{
+			return $settings['off_label'];
+		}
+	}
 }
