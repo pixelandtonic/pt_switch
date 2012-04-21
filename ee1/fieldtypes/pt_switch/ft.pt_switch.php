@@ -191,6 +191,12 @@ class Pt_switch extends Fieldframe_Fieldtype {
 			$this->insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
+		// Pretend it's a new entry if $data isn't set to one of the values
+		if ($data != $settings['off_val'] && $data != $settings['on_val'])
+		{
+			$new = TRUE;
+		}
+
 		$options = array(
 			$settings['off_val'] => $settings['off_label'],
 			$settings['on_val']  => $settings['on_label']

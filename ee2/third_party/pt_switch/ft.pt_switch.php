@@ -226,6 +226,12 @@ class Pt_switch_ft extends EE_Fieldtype {
 			$this->_insert_js('new ptSwitch(jQuery("#'.$field_id.'"));');
 		}
 
+		// Pretend it's a new entry if $data isn't set to one of the values
+		if ($data != $this->settings['off_val'] && $data != $this->settings['on_val'])
+		{
+			$new = TRUE;
+		}
+
 		$options = array(
 			$this->settings['off_val'] => $this->settings['off_label'],
 			$this->settings['on_val'] => $this->settings['on_label']
