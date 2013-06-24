@@ -34,14 +34,14 @@ ptSwitch = function($select){
 
 	var select = function(){
 		selected = true;
-		$select.val(onVal);
+		$select.val(onVal).trigger('change');
 
 		$handle.stop().animate({ left: selectedLeft }, 'fast');
 	};
 
 	var deselect = function(){
 		selected = false;
-		$select.val(offVal);
+		$select.val(offVal).trigger('change');
 
 		$handle.stop().animate({ left: 0 }, 'fast');
 	};
